@@ -49,6 +49,23 @@ namespace MyList
             return sb.ToString();
         }
 
+        public int GetSum() //посчитать сумму всех элементов
+        {
+            return 0;
+        }
+
+        public int GetInfoByPos(int k) //передаем номер - получаем Info
+        {
+            return 0;
+            throw new IndexOutOfRangeException("такого номера нет");
+        }
+            
+        public int GetPosByInfo(int x) // передаем число - находим номер
+        {
+            return -1;
+        }
+
+
 
     }
 }
