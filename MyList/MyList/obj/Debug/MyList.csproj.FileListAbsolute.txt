@@ -1,7 +1,0 @@
-C:\Users\moudr_000\Source\Repos\SecSem\MyList\MyList\bin\Debug\MyList.exe.config
-C:\Users\moudr_000\Source\Repos\SecSem\MyList\MyList\bin\Debug\MyList.exe
-C:\Users\moudr_000\Source\Repos\SecSem\MyList\MyList\bin\Debug\MyList.pdb
-C:\Users\moudr_000\Source\Repos\SecSem\MyList\MyList\obj\Debug\MyList.csprojAssemblyReference.cache
-C:\Users\moudr_000\Source\Repos\SecSem\MyList\MyList\obj\Debug\MyList.csproj.CoreCompileInputs.cache
-C:\Users\moudr_000\Source\Repos\SecSem\MyList\MyList\obj\Debug\MyList.exe
-C:\Users\moudr_000\Source\Repos\SecSem\MyList\MyList\obj\Debug\MyList.pdb
