@@ -12,6 +12,12 @@ namespace MergeLists
         public Elem Next { get; set; }
     }
 
+    class Elem<T> where T:IComparable
+    {
+        public T Info { get; set; }
+        public Elem<T> Next { get; set; }
+    }
+
     class MyList
     {
         public Elem First { get; set; }
@@ -130,6 +136,132 @@ namespace MergeLists
         {
             //Разность упорядоченных списков l1 - l2
             return new MyList();
+        }
+
+
+
+
+    }
+
+
+    class MyList<T> where T:IComparable
+    {
+        public Elem<T> First { get; set; }
+
+        public int Length
+        {
+            get
+            {
+                int k = 0;
+                var el = First;
+                while (el != null)
+                {
+                    k++;
+                    el = el.Next;
+                }
+                return k;
+            }
+        }
+
+        public void AddFirst(T x)
+        {
+            var el = new Elem<T>() { Info = x, Next = First };
+            First = el;
+        }
+
+        public void AddLast(T x)
+        {
+            var el = First;
+            if (el == null)
+            {
+                AddFirst(x);
+                return;
+            }
+            while (el.Next != null)
+                el = el.Next;
+            el.Next = new Elem<T>() { Info = x };
+        }
+
+        public override string ToString()
+        {
+            var el = First;
+            var sb = new StringBuilder();
+            while (el != null)
+            {
+                sb.Append($"{el.Info}\n");
+                el = el.Next;
+            }
+            return sb.ToString();
+        }
+
+        public bool IsOrdered()
+        {
+            var el = First;
+            if (el == null || el.Next == null)
+                return true;
+            while (el.Next != null)
+            {
+                if (el.Info.CompareTo(el.Next.Info) > 0  )
+                    return false;
+                el = el.Next;
+            }
+            return true;
+        }
+
+
+
+        public static MyList<T> operator +(MyList<T> l1, MyList<T> l2)
+        {
+            if (!l1.IsOrdered() || !l2.IsOrdered())
+                throw new Exception("Списки не упорядочены");
+
+            var el1 = l1.First;
+            var el2 = l2.First;
+            var l3 = new MyList<T>();
+
+            while (el1 != null && el2 != null)
+            {
+                if (el1.Info.CompareTo(el2.Info) < 0)
+                {
+                    l3.AddLast(el1.Info);
+                    el1 = el1.Next;
+                }
+                else
+                {
+                    l3.AddLast(el2.Info);
+                    el2 = el2.Next;
+                }
+            }
+            if (el1 == null)
+                while (el2 != null)
+                {
+                    l3.AddLast(el2.Info);
+                    el2 = el2.Next;
+                }
+            else
+                while (el1 != null)
+                {
+                    l3.AddLast(el1.Info);
+                    el1 = el1.Next;
+                }
+
+            return l3;
+
+
+        }
+
+        public static MyList<T> operator *(MyList<T> l1, MyList<T> l2)
+        {
+            //Пересечение упорядоченных списков
+
+            return new MyList<T>();
+
+        }
+
+        public static MyList<T> operator -(MyList<T> l1, MyList<T> l2)
+        {
+            //Разность упорядоченных списков l1 - l2
+            return new MyList<T>();
         }
 
 
