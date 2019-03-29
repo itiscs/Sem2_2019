@@ -159,6 +159,35 @@ namespace DelegateApp
 
 
             //Console.WriteLine("Hello World!");
+
+            List<int> tasks = new List<int>();
+            for (int i = 1; i <= 100; i++)
+                tasks.Add(i);
+
+            List<int> studs = new List<int>();
+            for (int k = 1; k <= 27; k++)
+            {
+                Console.Write($"stud {k} --- ");
+                if (k < 10)
+                    foreach (int i in tasks.Where(x => x % 10 == k))
+                        Console.Write($"{i} ");
+                else if (k < 21)
+                    foreach (int i in tasks.Where(x => x % 11 == k - 10))
+                        Console.Write($"{i} ");
+                else
+                    foreach (int i in tasks.Where(x => x % 12 == k - 20))
+                        Console.Write($"{i} ");
+
+                Console.WriteLine();
+
+            }
+                
+
+
+
+
+
+
         }
     }
 }
