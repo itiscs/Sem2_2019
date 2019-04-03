@@ -19,7 +19,8 @@ namespace MyTree
                 {
                     Info = 2,
                     Left = new Elem() { Info = 4 },
-                    Right = new Elem() { Info = 5 }
+                    Right = new Elem() { Info = 5,
+                        Left =new Elem() { Info = 8 } }
                 },
                 Right = new Elem()
                 {
@@ -29,6 +30,36 @@ namespace MyTree
                 }
             };
         }
+
+        public MyTree(string str)
+        {
+            // (1,(2,4,(5,8,)),(3,6,7))
+            int k = 0;
+            Root = Create(str.Split(new char[] { ',', ')' }), ref k);
+
+        }
+
+        private Elem Create(String[] str, ref int k)
+        {
+            Elem t = new Elem();
+            if (!str[k].Contains('('))
+            {
+                t.Info = int.Parse(str[k]);
+            }
+            else
+            {
+                t.Info = int.Parse(str[k].Remove(0, 1));//убрали '(' 
+                k++;
+                if (str[k] != "")
+                    t.Left = Create(str, ref k);
+                k++;
+                if (str[k] != "")
+                    t.Right = Create(str, ref k);
+                k++;
+            }
+            return t;
+        }
+
 
         private void ShowElem(Elem el)
         {
@@ -50,6 +81,50 @@ namespace MyTree
             ShowElem(Root);
         }
 
+
+        public string Leveled()
+        {
+            StringBuilder sb = new StringBuilder();
+            //Queue<Elem> q = new Queue<Elem>();
+            //q.Enqueue(Root);
+
+            //while(q.Count > 0)
+            //{
+            //    var el = q.Dequeue();
+            //    if (el != null)
+            //    {
+            //        q.Enqueue(el.Left);
+            //        q.Enqueue(el.Right);
+            //        sb.Append($"{el.Info} ");
+            //    }
+            //}
+
+            Queue<Elem> q1 = new Queue<Elem>();
+            Queue<Elem> q2;
+            if(Root!=null)
+                q1.Enqueue(Root);
+            int k = 0;
+            
+            while (q1.Count > 0)
+            {
+                sb.Append($"Level {k++}: ");
+
+                q2 = new Queue<Elem>();
+                while (q1.Count > 0)
+                {
+                    var el = q1.Dequeue();
+                    if(el.Left!=null)
+                        q2.Enqueue(el.Left);
+                    if(el.Right!=null)
+                        q2.Enqueue(el.Right);
+                    sb.Append($"{el.Info} ");
+                }
+                sb.Append("\n");
+                q1 = q2;
+            }
+
+            return sb.ToString();
+        }
 
         public override string ToString()
         {

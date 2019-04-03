@@ -10,10 +10,11 @@ namespace MyTree
     {
         static void Main(string[] args)
         {
-            MyTree t = new MyTree();
-            t.Show();
+            MyTree t = new MyTree("(1,(2,3,(4,,8)),(5,6,7))");
+            t.Show(); //рекурсивный обход
             Console.WriteLine();
-            Console.WriteLine(t);
+            Console.WriteLine(t); //обход при помощи стека
+            Console.WriteLine(t.Leveled()); //обход при помощи очереди
         }
     }
 }
