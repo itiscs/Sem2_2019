@@ -105,13 +105,13 @@ namespace LinqApp
             pres.Add(new Presents() { ShopId = 3, PhoneId = 4, Amount = 10 });
 
             //var newLst = phones.Where(p => p.Price > 10000).OrderByDescending(p => p.Model)
-            //    .ThenByDescending(p => p.Price).Select(p => new { p.Brand, p.Model } );
+            //    .ThenByDescending(p => p.Price).Select(p => new { p.Brand, p.Model });
 
             //var lst2 = phones.SelectMany(p => p.Model.Split(' ')).Distinct();
 
-            ////Console.WriteLine(phones.Min(p => p.Model));
+            //Console.WriteLine(phones.Min(p => p.Model));
 
-            ////Console.WriteLine(newLst);
+            //Console.WriteLine(newLst);
             //foreach (var p in lst2)
             //{
             //    Console.WriteLine(p);
@@ -121,13 +121,14 @@ namespace LinqApp
                Select(g => new { Brand = g.Key, Count = g.Count(),
                    MaxPrice = g.Max(p => p.Price),
                    AvgId = g.Average(p => p.Id)
-               });
+               }).Where(p=>p.MaxPrice<50000m);
 
+            
             Console.WriteLine(" Группировка*********************** ");
             foreach(var b in grLst)
             {
                 Console.WriteLine(b);
-
+                
             }
 
             var result = pres.Join(shops,

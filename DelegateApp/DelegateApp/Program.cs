@@ -57,26 +57,43 @@ namespace DelegateApp
         
         static void Main(string[] args)
         {
-
             Func<int,int,int> myOper = new Func<int, int, int>(ArOper.Sum);
+
+            //MyOper myOper = new MyOper(ArOper.Sum);
+
+            Console.WriteLine(myOper(2, 5));
+
+            myOper = (a,b) => a * b;
+
+            Console.WriteLine(myOper(2, 5));
 
             myOper = ArOper.Div;
 
-            myOper = (a,b) => a + b; 
+            Action delegHello = new Action(ArOper.Hello1);
+
+            //delegHello();
+
+            delegHello += ArOper.Hello1;
+            delegHello += ArOper.Hello2;
+            delegHello += () => { Console.WriteLine("Hello from lambda"); };
+
+            delegHello?.Invoke();
+
+            //myOper = (a,b) => a + b; 
 
 
-            Console.WriteLine(myOper(14, 7));
+            //Console.WriteLine(myOper(14, 7));
 
 
-            myOper = ArOper.Min;
+            //myOper = ArOper.Min;
 
 
-            Action hello = new Action(ArOper.Hello1);
+            //Action hello = new Action(ArOper.Hello1);
 
-            hello += ArOper.Hello2;
-            hello += () => { Console.WriteLine("Hello from lambda"); };
-         
-            hello?.Invoke();
+            //hello += ArOper.Hello2;
+            //hello += () => { Console.WriteLine("Hello from lambda"); };
+
+            //hello?.Invoke();
 
             Console.WriteLine("*********************************");
 
@@ -103,7 +120,7 @@ namespace DelegateApp
             }); phones.Add(new Phone()
             {
                 Id = 4,
-                Brand = "fa",
+                Brand = "ka",
                 Model = "zz",
                 Price = 9000m
             }); phones.Add(new Phone()
@@ -117,40 +134,35 @@ namespace DelegateApp
 
 
             var newLst = phones.Where(p => p.Price > 10000).
-                OrderBy(p => p.Price).Select(p=>new { p.Brand, p.Model });
+                OrderBy(p => p.Price).Select(p => new { p.Brand, p.Model });
 
-            foreach(var elem in newLst)
+            foreach (var elem in newLst)
             {
                 Console.WriteLine(elem);
             }
 
 
 
-            //ArOper ar = new ArOper();
-            //Func<int, int, int> myOper = new Func<int, int, int>(ar.Div);
-            //Action myAction = new Action(ar.Hello1);
+            ////ArOper ar = new ArOper();
+            ////Func<int, int, int> myOper = new Func<int, int, int>(ar.Div);
+            ////Action myAction = new Action(ar.Hello1);
 
-            //myAction += ar.Hello1;
+            ////myAction += ar.Hello1;
 
-            //myAction?.Invoke();
+            ////myAction?.Invoke();
 
-            //myOper = (a, b) => a + b;
+            ////myOper = (a, b) => a + b;
 
-            ////Console.WriteLine(myOper(17, 8));
+            //////Console.WriteLine(myOper(17, 8));
 
 
-            //int x = myOper(5, 10);
+            ////int x = myOper(5, 10);
 
-            //List<int> lst = new List<int>() { 2,5,6,7,9,3,4,6,7,8};
+            //List<int> lst = new List<int>() { 2, 5, 6, 7, 9, 3, 4, 6, 7, 8 };
 
-            //var str = Console.ReadLine();
+            //var newLst = lst.Where(k => k % 2 == 1).OrderByDescending(k=>k).FirstOrDefault(k=>k%13==0);
 
-            //var newLst = lst.Where(k => k % 2 == 0).OrderBy(k => -k).Take(3);
-
-            //Console.WriteLine(newLst.Count());
-
-            //lst.Sort();
-
+            //Console.WriteLine(newLst);
             //foreach (var elem in newLst)
             //{
             //    Console.WriteLine(elem);
@@ -158,30 +170,30 @@ namespace DelegateApp
 
 
 
-            //Console.WriteLine("Hello World!");
+            ////Console.WriteLine("Hello World!");
 
-            List<int> tasks = new List<int>();
-            for (int i = 1; i <= 100; i++)
-                tasks.Add(i);
+            //List<int> tasks = new List<int>();
+            //for (int i = 1; i <= 100; i++)
+            //    tasks.Add(i);
 
-            List<int> studs = new List<int>();
-            for (int k = 1; k <= 27; k++)
-            {
-                Console.Write($"stud {k} --- ");
-                if (k < 10)
-                    foreach (int i in tasks.Where(x => x % 10 == k))
-                        Console.Write($"{i} ");
-                else if (k < 21)
-                    foreach (int i in tasks.Where(x => x % 11 == k - 10))
-                        Console.Write($"{i} ");
-                else
-                    foreach (int i in tasks.Where(x => x % 12 == k - 20))
-                        Console.Write($"{i} ");
+            //List<int> studs = new List<int>();
+            //for (int k = 1; k <= 27; k++)
+            //{
+            //    Console.Write($"stud {k} --- ");
+            //    if (k < 10)
+            //        foreach (int i in tasks.Where(x => x % 10 == k))
+            //            Console.Write($"{i} ");
+            //    else if (k < 21)
+            //        foreach (int i in tasks.Where(x => x % 11 == k - 10))
+            //            Console.Write($"{i} ");
+            //    else
+            //        foreach (int i in tasks.Where(x => x % 12 == k - 20))
+            //            Console.Write($"{i} ");
 
-                Console.WriteLine();
+            //    Console.WriteLine();
 
-            }
-                
+            //}
+
 
 
 
