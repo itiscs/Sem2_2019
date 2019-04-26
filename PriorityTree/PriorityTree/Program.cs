@@ -59,9 +59,9 @@ namespace PriorityQueue
         {
             Elem[] data = { new Elem { Priority = 1, Task = 1 },
                             new Elem { Priority = 2, Task = 2 },
-                            new Elem { Priority = 30, Task = 3 },
+                            new Elem { Priority = -1, Task = -1 },
                             new Elem { Priority = 4, Task = 4 },
-                            new Elem { Priority = 1, Task = 5 },
+                            new Elem { Priority = 5, Task = 5 },
                             new Elem { Priority = 5, Task = 6 },
                             new Elem { Priority = 3, Task = 7 },
                             new Elem { Priority = 4, Task = 8 }};
